@@ -26,7 +26,7 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <p>Hyderabad, India</p>
             <p> <a href='mailto:syedadnanali0106@gmail.com'>Email: syedadnanali0106@gmail.com</a></p>
-            <p>Phone: 123-456-7890</p>
+            {/* <p>Phone: 123-456-7890</p> */}
           </div>
           <div className="text-white">
             <h3 className="text-lg font-bold mb-4">Social Media</h3>
