@@ -4,9 +4,9 @@ import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 
 const Hero = () => {
   const [isClient, setIsClient] = useState(false);
-  const [audio, setAudio] = useState(null);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     // This will run only on the client side after the component mounts
