@@ -4,7 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 const RotatingCube = () => {
-  const meshRef = useRef();
+  const meshRef = useRef<THREE.Mesh | null>(null);
 
   useFrame(() => {
     if (meshRef.current) {
