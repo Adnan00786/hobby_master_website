@@ -1,9 +1,12 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 
 const Hero = () => {
   const [isClient, setIsClient] = useState(false);
   const [audio, setAudio] = useState(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     // This will run only on the client side after the component mounts
@@ -18,14 +21,23 @@ const Hero = () => {
     }
   };
 
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+    }
+  };
+
   return (
     <div id="hero" className="relative h-screen w-full">
       {isClient && (
         <video 
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           src="/assets/desk_2_hero.mp4" 
           autoPlay 
           loop 
+          muted={isMuted}
           playsInline
         />
       )}
@@ -38,9 +50,19 @@ const Hero = () => {
           className="text-4xl bg-gradient-to-r from-orange-400 to-blue-500 text-white py-3 px-6 rounded-full text-lg font-medium animate-bounce"
           onClick={handleClick}
         >
-          <a href="/Courses" className='text-black font-mono-bold hover:text-green'>Courses</a>
+          <a href="/Courses" className="text-white hover:text-green">Courses</a>
         </button>
       </div>
+      <button 
+        className="absolute bottom-8 right-8 text-white bg-black bg-opacity-50 p-2 rounded-full"
+        onClick={toggleMute}
+      >
+        {isMuted ? (
+          <FaVolumeMute className="h-6 w-6" />
+        ) : (
+          <FaVolumeUp className="h-6 w-6" />
+        )}
+      </button>
     </div>
   );
 };

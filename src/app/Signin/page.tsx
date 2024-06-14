@@ -66,17 +66,68 @@
 // };
 
 // export default Signin;
+
+// Trial 2 down
+
+// "use client";
+// import React, { useEffect, useState } from 'react';
+// import Navbar2 from '@/components/Navbar2';
+// import Footer from '@/components/Footer';
+
+// const Signin = () => {
+//   const [isClient, setIsClient] = useState(false);
+//   const [audio, setAudio] = useState(null);
+
+//   useEffect(() => {
+//     setIsClient(true);
+//     setAudio(new Audio('/assets/button-sound.mp3'));
+//   }, []);
+
+//   const handleClick = () => {
+//     if (audio) {
+//       audio.play();
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Navbar2 />
+//       <div className="flex items-center justify-center h-screen bg-gray-800 text-white px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-md text-center">
+//           <h1 className="text-7xl font-bold mb-4">Sign In</h1>
+//           <p className="text-3xl mb-6">This feature is coming soon...</p>
+//           <button 
+//             className="inline-block px-6 py-3 bg-blue-600 text-white font-bold text-lg rounded-md hover:bg-blue-700 transition duration-200"
+//             onClick={handleClick}
+//           >
+//             <a href="/" className='text-black font-mono-bold hover:text-green'>Back to Home</a>
+//           </button>
+//         </div>
+//       </div>
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default Signin;
+
+
 "use client";
-import React, { useEffect, useState } from 'react';
-import Navbar2 from '@/components/Navbar2';
+import React, { useEffect, useState, useRef } from 'react';
+import { FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 import Footer from '@/components/Footer';
+import Navbar2 from '@/components/Navbar2';
 
 const Signin = () => {
   const [isClient, setIsClient] = useState(false);
   const [audio, setAudio] = useState(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
 
   useEffect(() => {
+    // This will run only on the client side after the component mounts
     setIsClient(true);
+    // Set the audio file
     setAudio(new Audio('/assets/button-sound.mp3'));
   }, []);
 
@@ -86,26 +137,48 @@ const Signin = () => {
     }
   };
 
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+    }
+  };
+
   return (
     <>
-      <Navbar2 />
-      <div className="flex items-center justify-center h-screen bg-gray-800 text-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md text-center">
-          <h1 className="text-7xl font-bold mb-4">Sign In</h1>
-          <p className="text-3xl mb-6">This feature is coming soon...</p>
-          <button 
-            className="inline-block px-6 py-3 bg-blue-600 text-white font-bold text-lg rounded-md hover:bg-blue-700 transition duration-200"
-            onClick={handleClick}
-          >
-            <a href="/" className='text-black font-mono-bold hover:text-green'>Back to Home</a>
-          </button>
-        </div>
+    <Navbar2/>
+    <div id="hero" className="relative h-screen w-full">
+      {isClient && (
+        <video 
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/assets/desk_hero.mp4" 
+          autoPlay 
+          loop 
+          muted={isMuted}
+          playsInline
+        />
+      )}
+      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center px-4">
+        <h1 className="text-white text-6xl md:text-6xl lg:text-8xl font-bold mb-4">
+          Sign In
+        </h1>
+        <br></br>
+        <p className="text-white md:text-6xl lg:text-8xl font-bold mb-4">
+          This Feature is Coming Soon
+        </p>
+        <br />
+        <button 
+          className="text-4xl bg-gradient-to-r from-red-400 to-white-500 text-white py-3 px-6 rounded-full text-lg font-medium animate-bounce"
+          onClick={handleClick}
+        >
+          <a href="/" className="text-white hover:text-green">Back to Home</a>
+        </button>
       </div>
-      <Footer />
+    </div>
+    <Footer/>
     </>
   );
 };
 
 export default Signin;
-
-
