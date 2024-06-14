@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCode, FaBrain, FaChalkboardTeacher } from 'react-icons/fa';
 
 const Features = () => {

@@ -1,6 +1,5 @@
 "use client";
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 interface Project {
@@ -19,8 +18,7 @@ interface ProjectCardProps {
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const { title, description, imageUrl, tags, link } = project;
   const [isClient, setIsClient] = useState(false);
-
-  const [audio, setAudio] = useState(null);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setIsClient(true);
