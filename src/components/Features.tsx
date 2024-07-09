@@ -1,6 +1,7 @@
 import { FaCode, FaBrain, FaChalkboardTeacher } from 'react-icons/fa';
 
-
+// Is this there Where it should be I mean being where it needs to be
+// Checking whether Commits are live in the github through git or not
 const Features = () => {
   return (
     <div className="py-12 bg-gray-100">
