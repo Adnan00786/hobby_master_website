@@ -1,5 +1,6 @@
 import { FaCode, FaBrain, FaChalkboardTeacher } from 'react-icons/fa';
 
+
 const Features = () => {
   return (
     <div className="py-12 bg-gray-100">
