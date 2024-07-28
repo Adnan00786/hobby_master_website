@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Hobby Master. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Hobby Master. All rights reserved. <br /> Developed by Adnan</p>
         </div>
       </div>
     </footer>
